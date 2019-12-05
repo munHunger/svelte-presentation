@@ -1,6 +1,12 @@
 <script>
   import Card from "./Card.svelte";
-  let page = 3;
+  let page = 4;
+
+  function handleKeydown(event) {
+    if (event.keyCode === 13) page++;
+    else if (event.keyCode === 8) page--;
+    else console.log(event.keyCode);
+  }
 </script>
 
 <style>
@@ -51,6 +57,19 @@
     display: inline-block;
   }
 
+  .avatar {
+    position: relative;
+    margin: 50px;
+    width: 300px;
+    height: 300px;
+    border-radius: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: inline-block;
+    box-shadow: 0px 5px 10px 5px rgba(0, 0, 0, 0.5);
+  }
+
   .fade-in {
     animation: fade-in-keyframes 1s ease-out forwards;
   }
@@ -64,6 +83,8 @@
     }
   }
 </style>
+
+<svelte:window on:keydown={handleKeydown} />
 
 <div class="lower-logo">
   <img src="img/logo.png" alt="company logo" style="width:200px" />
@@ -110,6 +131,20 @@
       <Card
         icon="img/framework/svelte.png"
         bullets={['writable store', '9KB', 'no virtual dom', 'lighthouse 91', 'not a framework']} />
+    </div>
+  {/if}
+
+  {#if page === 4}
+    <div class="fade-in" style="display: inherit">
+      <div class="avatar" style="background-image: url('img/harris.jpeg');" />
+    </div>
+  {/if}
+  {#if page === 5}
+    <div class="fade-in" style="display: inherit">
+      <div class="avatar" style="background-image: url('img/harris.jpeg');" />
+    </div>
+    <div class="fade-in" style="display: inherit">
+      <div class="avatar" style="background-image: url('img/einstein.jpg');" />
     </div>
   {/if}
 </div>
